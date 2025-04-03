@@ -1,0 +1,71 @@
+<h1 mat-dialog-title style="margin-bottom: 1rem">Update Matiere</h1>
+
+<div mat-dialog-content>
+    <!-- Your form or content for adding a user goes here -->
+    <div class="contact__form">
+        <form #updateForm="ngForm" (ngSubmit)="submitForm(updateForm)" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12 m-b-30">
+                    <div class="contact__form-input__image__container">
+                        <img class="contact__form-input__image" [src]="imageUrl" alt="Image Preview" />
+                    </div>
+                    <div class="contact__form-input contact__form-input__image__btns">
+                        <input type="file" accept="image/*" id="Image" name="imageUrl" ngModel #fileInput
+                            style="display: none;" (change)="onImageFileSelected($event)" />
+                        <!-- Button to trigger file input click -->
+                        <button type="button" mat-flat-button class="Extended-Fab" (click)="triggerFileInputClick()">
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload"
+                                    matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Select Image</span>
+                            </span>
+                        </button>
+
+                        <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16"
+                            (click)="resetAvatarImage()">
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="photo-cancel"
+                                    matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Reset Image</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-md-6" style="margin-bottom: 8px;">
+                    <div class="contact__form-input">
+                        <label class="contact__form-input-label" for="nom">Nom</label>
+                        <input #nomField="ngModel" type="text" placeholder="Type Name" id="nom" name="nom" ngModel
+                            [(ngModel)]="data.nom" required minlength="3" pattern="[a-zA-Z]+[a-zA-Z ]*"
+                            [ngClass]="{'inputError' : (nomField.invalid && nomField.touched) }" />
+                        <app-error-form-handler [fieldIn]="nomField"
+                            [isFormSubmitedIn]="isFormSubmited"></app-error-form-handler>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-md-6" style="margin-bottom: 8px;">
+                    <div class="contact__form-input">
+                        <label class="contact__form-input-label" for="ects">ECTS</label>
+                        <input #ectsField="ngModel" type="number" placeholder="Type ECTS" id="ects" name="ects" ngModel
+                            [(ngModel)]="data.ects" required pattern="[0-9]+"
+                            [ngClass]="{'inputError' : (ectsField.invalid && ectsField.touched) }" />
+                        <app-error-form-handler [fieldIn]="ectsField"
+                            [isFormSubmitedIn]="isFormSubmited"></app-error-form-handler>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="contact__form-input">
+                        <label for="Description">Description</label>
+                        <textarea placeholder="Enter Your Description" id="Description" name="description"
+                            [(ngModel)]="data.description" ngModel></textarea>
+                    </div>
+                </div>
+
+                <div class="col-12" style="margin-top: 1rem">
+                    <button type="submit" mat-flat-button color="primary">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

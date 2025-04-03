@@ -1,0 +1,21 @@
+<main>
+  <!-- course area start -->
+  <section class="course__area pt-120 pb-120">
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let university of dataSource.data" class="col-xxl-4 col-xl-4 col-lg-4">
+          <app-card  [university]="university" ></app-card>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <br>
+
+  <!-- course area end -->
+
+  <!-- cta area start -->
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" ></mat-paginator>
+</main>
+

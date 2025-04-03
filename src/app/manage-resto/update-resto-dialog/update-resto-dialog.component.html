@@ -1,0 +1,71 @@
+<h1 mat-dialog-title style="margin-bottom: 1rem">Update Restaurant</h1>
+
+<div mat-dialog-content>
+    <div class="contact__form">
+        <form #f="ngForm" (ngSubmit)="submitForm(f.value)">
+            <div class="row">
+                <div class="col-12 m-b-30">
+                    <div class="contact__form-input__image__container">
+                        <img class="contact__form-input__image" [src]="image" alt="Image Preview" />
+                    </div>
+                    <div class="contact__form-input contact__form-input__image__btns">
+                        <input type="file" accept="image/*" id="Image" name="userImage" ngModel #fileInput
+                               style="display: none;" (change)="onFileSelected($event)" />
+                        <!-- Button to trigger file input click -->
+                        <button type="button" mat-flat-button class="Extended-Fab" (click)="triggerFileInputClick()">
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload"
+                                          matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Select Image</span>
+                            </span>
+                        </button>
+                        <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16"
+                                (click)="resetImage()">
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="photo-cancel"
+                                          matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Reset Image</span>
+                            </span>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="col-xxl-6 col-xl-6 col-md-6">
+                    <div class="contact__form-input">
+                        <label for="nomRestaurant">Nom Restaurant :</label>
+                        <input [(ngModel)]="restaurant_data.nomRestaurant"    type="text" placeholder="nomRestaurant" id="nomRestaurant" name="nomRestaurant" ngModel  required #n="ngModel" />
+                    </div>
+                    <div *ngIf="n.invalid && (n.dirty || n.touched)" class="error-message">
+                        <app-error [err]="n"></app-error>
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-md-6">
+                    <div class="contact__form-input">
+                        <label for="specialite">Specialite :</label>
+                        <input [(ngModel)]="restaurant_data.specialite"  type="text" placeholder="specialite" id="specialite" name="specialite" ngModel  required #s="ngModel"/>
+                    </div>
+                    <div *ngIf="s.invalid && (s.dirty || s.touched)" class="error-message">
+                        <app-error [err]="s"></app-error>
+                    </div>
+                </div>
+
+                <div class="col-xxl-6 col-xl-6 col-md-6">
+                    <div class="contact__form-input">
+                        <label for="menu">Plat du jour :</label>
+                        <input [(ngModel)]="restaurant_data.menu"  type="text" placeholder="menu" id="menu" name="menu" ngModel  required #m="ngModel" />
+                    </div>
+                    <div *ngIf="m.invalid && (m.dirty || m.touched)" class="error-message">
+                        <app-error [err]="m"></app-error>
+                    </div>
+                </div>
+
+                <div class="col-12" style="margin-top: 1rem">
+                    <button type="submit" mat-flat-button color="primary">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+<h1 mat-dialog-title style="margin-bottom: 1rem" class="text-center mx-auto">Modifier User</h1>
+<div mat-dialog-content>
+  <div class="contact__form">
+    
+      <form [formGroup]="frombuil" #f="ngForm">
+
+      <div class="row"class="text-center mx-auto">
+        <div class="col-12 m-b-30">
+
+          <div class="col-12 m-b-30">
+            <div class="contact__form-input__image__container">
+              <img class="contact__form-input__image" [src]="imageUrl" alt="Avatar">
+            </div>
+            <div class="contact__form-input contact__form-input__image__btns">
+              <input type="file" accept="image/*" id="avatar" name="avatar" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+              <button type="button" mat-flat-button class="Extended-Fab" (click)="selectImage()">
+                <span class="Extended-Fab__container">
+                  <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload" matListItemIcon></i-tabler>
+                  <span class="Extended-Fab__text">Select Image</span>
+                </span>
+              </button>
+          
+              <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16" (click)="resetImage()">
+                <span class="Extended-Fab__container">
+                  <i-tabler class="routeIcon Extended-Fab__icon" name="photo-cancel" matListItemIcon></i-tabler>
+                  <span class="Extended-Fab__text">Reset Image</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="firstName"> </label>
+            <input type="text" formControlName="firstName" placeholder="First Name" pattern="[a-zA-Z ]*" required />
+            <div *ngIf="formSubmitted && form['firstName']?.invalid" class="error-message">
+              <app-error [err]="form['firstName']"></app-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="lastName"></label>
+            <input type="text" formControlName="lastName" placeholder="Last Name" pattern="[a-zA-Z ]*" required />
+            <div *ngIf="formSubmitted && form['lastName']?.invalid" class="error-message">
+              <app-error [err]="form['lastName']"></app-error>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="email"></label>
+            <input type="email" formControlName="email" placeholder="example@example.com"  [readonly]="true"  />
+            <div *ngIf="formSubmitted && form['email']?.invalid" class="error-message" >
+              <app-error [err]="form['email']"></app-error>
+            </div>
+
+          </div>
+        </div>
+        
+          
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="cin"></label>
+            <input type="number" formControlName="cin" placeholder="CIN" [readonly]="true"  />
+            <div *ngIf="formSubmitted && form['cin']?.invalid" class="error-message" >
+              <app-error [err]="form['cin']"></app-error>
+            </div>
+
+          </div>
+        </div>
+        
+
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="phone"></label>
+            <input type="number" formControlName="phone" placeholder="Phone" min="10000000" max="99999999" required />
+              <div *ngIf="formSubmitted && form['phone']?.invalid" class="error-message" >
+                <app-error [err]="form['phone']"></app-error>
+              </div>
+
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="roles"></label>
+            <input type="text" formControlName="roles" placeholder="roles" />
+              <div *ngIf="formSubmitted && form['roles']?.invalid" class="error-message" >
+                <app-error [err]="form['roles']"></app-error>
+              </div>
+
+          </div>
+        </div>
+       
+
+      <!-- Dans votre modèle Angular -->
+
+
+        
+        <div class="col-12" style="margin-top: 1rem">
+          <button type="submit" mat-flat-button color="primary" (click)="updateUser(frombuil)">
+            Enregistrer
+          </button>
+        </div>
+
+  </div>
+</div>
+
+

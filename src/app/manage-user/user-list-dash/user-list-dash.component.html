@@ -1,0 +1,187 @@
+<div class="bg-light-primary rounded p-y-30 p-x-24 m-b-30 overflow-hidden ng-star-inserted">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4 class="page-title m-0 f-s-20 f-w-600 m-b-16">Users list</h4>
+      <div class="d-flex align-items-center overflow-hidden"><!----></div>
+    </div>
+    <div class="col-sm-4 text-right position-relative">
+      <div class="breadcrumb-icon">
+        <img src="/assets/images/breadcrumb/ChatBc.png" alt="breadcrumb" width="165" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="contact__form-input" style="display: flex;">
+          <input
+          type="search"
+          class="form-control mr-sm-2"
+          placeholder="   Rechercher "
+          [(ngModel)]="searchText"
+          (keyup)="onSearchChange()"/>
+
+        </div>
+      </div>
+      <div class="col-sm-8 text-right">
+        <button type="button" mat-flat-button class="Extended-Fab" (click)="openAddUserDialog()">
+          <span class="Extended-Fab__container">
+            <i-tabler class="routeIcon Extended-Fab__icon" name="circle-plus" matListItemIcon></i-tabler>
+            <span class="Extended-Fab__text">Add user</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="col" style="margin-top: 2rem" class="text-center mx-auto">
+      <mat-card class="cardWithShadow">
+        <div class="table-responsive m-t-16">
+          <table mat-table [dataSource]="dataSource" class="w-100">
+               <!-- Name Column -->
+               <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                  Id
+                </th>
+                <td mat-cell *matCellDef="let element" class="mat-body-1">
+                  {{ element.idUser }}
+                </td>
+              </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                First Name
+              </th>
+              <td mat-cell *matCellDef="let element" class="mat-body-1">
+                {{ element.firstName }}
+              </td>
+            </ng-container>
+
+            <!-- Last Name Column -->
+            <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                Last Name
+              </th>
+              <td mat-cell *matCellDef="let element" class="mat-body-1">
+                {{ element.lastName }}
+              </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                Email
+              </th>
+              <td mat-cell *matCellDef="let element" class="mat-body-1">
+                {{ element.email }}
+              </td>
+            </ng-container>
+
+            <!-- Phone Column -->
+            <ng-container matColumnDef="phone">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                Phone
+              </th>
+              <td mat-cell *matCellDef="let element" class="mat-body-1">
+                {{ element.phone }}
+              </td>
+            </ng-container>
+
+            <!-- Active Column -->
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                Active
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <span [ngClass]="{'bg-light-success': element.active, 'bg-light-error': !element.active}"
+                      class="text-dark rounded f-w-600 p-6 p-y-4 f-s-12"
+                      [style.backgroundColor]="element.active ? '#4CAF50' : '#F44336'">
+                  {{ element.active ? 'Active' : 'Inactive' }}
+                </span>
+              </td>
+            </ng-container>
+            
+            
+            <ng-container matColumnDef="isEnabled">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+               Enabled
+              </th>
+              <td mat-cell *matCellDef="let element" class="mat-body-1">
+                <span [ngClass]="{'bg-light-success': element.enabled, 'bg-light-error': !element.enabled}"
+                      class="text-dark rounded f-w-600 p-6 p-y-4 f-s-12"
+                      [style.backgroundColor]="element.enabled ? '#4CAF50' : '#F44336'">
+                  {{ element.enabled ? 'Enabled' : 'Disabled' }}
+                </span>
+              </td>
+            </ng-container>
+            <!-- Roles Column -->
+            <ng-container matColumnDef="roles">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                Roles
+              </th>
+              <td mat-cell *matCellDef="let element" class="mat-body-1">
+                <div *ngIf="element.roles">
+                  {{ element.roles.name }}
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                  #action
+              </th>
+              <td mat-cell *matCellDef="let element" class="mat-body-1" style="display: flex;">
+                  <!-- Add your action buttons here -->
+                  <a [routerLink]="['/dashboard/user/admin',element.id]" mat-icon-button=""
+                      color="primary"
+                      class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                      mat-button-is-fab="false">
+                      <span
+                          class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                          style="color: #8791ff" name="eye" class="icon-20" _nghost-ng-c2034356942="">
+                      </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                          class="mat-mdc-button-touch-target"></span><span
+                          class="mat-mdc-button-ripple"></span>
+                  </a>
+
+                  <span class="m-x-1"></span>
+
+                  <a   (click)="openUserUpdate(element)" mat-icon-button="" color="primary"
+                  class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                  mat-button-is-fab="false">
+                  <span
+                      class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                      style="color: #87a7ff" name="edit" class="icon-20" _nghost-ng-c2034356942="">
+                  </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                      class="mat-mdc-button-touch-target"></span><span
+                      class="mat-mdc-button-ripple"></span>
+              </a>
+
+                  <span class="m-x-1"></span>
+
+                  <button mat-icon-button="" color="primary" (click)="deleteUserById(element.idUser)"
+                  class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base" mat-button-is-fab="false">
+                  <span class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span>
+                  <i-tabler style="color: #ff8e8e" name="trash" class="icon-20" _nghost-ng-c2034356942=""></i-tabler>
+                  <span class="mat-mdc-focus-indicator"></span>
+                  <span class="mat-mdc-button-touch-target"></span>
+                  <span class="mat-mdc-button-ripple"></span>
+                </button>
+              </td>
+          </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" appChangeColor
+            (colorChanged)="onColorChanged($event)" [style.background-color]="backgroundColor"></tr>
+          </table>
+        </div>
+      </mat-card>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,181 @@
+<div class="bg-light-primary rounded p-y-30 p-x-24 m-b-30 overflow-hidden ng-star-inserted">
+  <div class="row">
+      <div class="col-sm-8">
+          <h4 class="page-title m-0 f-s-20 f-w-600 m-b-16">Universities list</h4>
+          <div class="d-flex align-items-center overflow-hidden"><!----></div>
+      </div>
+      <div class="col-sm-4 text-right position-relative">
+          <div class="breadcrumb-icon">
+              <img src="/assets/images/breadcrumb/ChatBc.png" alt="breadcrumb" width="165" />
+          </div>
+      </div>
+  </div>
+</div>
+
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="contact__form-input" style="display: flex;">
+            <input style="background-color: transparent;" type="text" placeholder="Search" id="search"
+                   name="nomUniversite" [(ngModel)]="nomUniversite" (input)="search()" />
+            <i-tabler style="margin: 1.5rem 0 0 -2.2rem; color: #cacaca;" class="routeIcon" name="search" matListItemIcon></i-tabler>
+          </div>
+        </div>
+          <div class="col-sm-8 text-right">
+              <!-- <mat-card-subtitle class="mat-body-1"></mat-card-subtitle> -->
+              <!-- <button mat-flat-button color="primary" (click)="openAddUserDialog()">
+          Add user
+        </button> -->
+
+              <button type="button" mat-flat-button class="Extended-Fab" (click)="openAddUniversityDialog()">
+                  <span class="Extended-Fab__container">
+                      <i-tabler class="routeIcon Extended-Fab__icon" name="circle-plus" matListItemIcon></i-tabler>
+                      <span class="Extended-Fab__text">Add university</span>
+                  </span>
+              </button>
+          </div>
+      </div>
+
+      <div class="col" style="margin-top: 2rem">
+
+          <mat-card class="cardWithShadow">
+              <div class="table-responsive m-t-16">
+                  <table mat-table [dataSource]="dataSource" class="w-100">
+                      <!-- Position Column -->
+
+                      <!-- Name Column -->
+                    <ng-container matColumnDef="image">
+                      <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                        Image
+                      </th>
+                      <td mat-cell *matCellDef="let element">
+                        <div class="d-flex align-items-center">
+                          <img src="{{ imageBasePath + element.image}}" alt="users" width="60"  />
+                        </div>
+                      </td>
+                    </ng-container>
+                      <ng-container matColumnDef="idUniversite">
+                          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                              Id
+                          </th>
+                          <td mat-cell *matCellDef="let element" class="mat-body-1">
+                              {{ element.idUniversite }}
+                          </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="nomUniversite">
+                          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                            Nom
+                          </th>
+                          <td mat-cell *matCellDef="let element" class="mat-body-1">
+                              {{ element.nomUniversite }}
+                          </td>
+                      </ng-container>
+
+                      <!-- Weight Column -->
+                      <ng-container matColumnDef="adresseUniversite">
+                        <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                          Adrsse
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="mat-body-1">
+                          {{ element.adresseUniversite }}
+                        </td>
+                      </ng-container>
+                    <ng-container matColumnDef="ville">
+                      <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                        ville
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        {{ element.ville }}
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="descriptionUniversite">
+                      <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                        Description
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        {{ element.descriptionUniversite }}
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="telUniversite">
+                      <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                        Telephone
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        {{ element.telUniversite }}
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="emailUinversite">
+                      <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                       Email
+                      </th>
+                      <td mat-cell *matCellDef="let element" class="mat-body-1">
+                        {{ element.emailUinversite }}
+                      </td>
+                    </ng-container>
+
+
+                      <!-- Symbol Column -->
+                      <ng-container matColumnDef="action">
+                          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                              #action
+                          </th>
+                          <td mat-cell *matCellDef="let element" class="mat-body-1" style="display: flex;">
+                              <!-- <a type="button" href="#">
+                  <i-tabler class="routeIcson" style="color: #87a7ff" name="edit" matListItemIcon></i-tabler></a> -->
+
+                              <a [routerLink]="['/dashboard/universities/admin',element.idUniversite]" mat-icon-button=""
+                                  color="primary"
+                                  class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                                  mat-button-is-fab="false">
+                                  <span
+                                      class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                                      style="color: #8791ff" name="eye" class="icon-20" _nghost-ng-c2034356942="">
+                                  </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                                      class="mat-mdc-button-touch-target"></span><span
+                                      class="mat-mdc-button-ripple"></span>
+                              </a>
+
+                              <span class="m-x-1"></span>
+
+                              <a   (click)="openUniversityUpdate(element)" mat-icon-button="" color="primary"
+                                  class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                                  mat-button-is-fab="false">
+                                  <span
+                                      class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                                      style="color: #87a7ff" name="edit" class="icon-20" _nghost-ng-c2034356942="">
+                                  </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                                      class="mat-mdc-button-touch-target"></span><span
+                                      class="mat-mdc-button-ripple"></span>
+                              </a>
+
+                              <span class="m-x-1"></span>
+
+                              <a (click)="deleteUniversite(element.idUniversite)"  mat-icon-button="" color="primary"
+                                  class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                                  mat-button-is-fab="false">
+                                  <span
+                                      class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                                      style="color: #ff8e8e" name="trash" class="icon-20" _nghost-ng-c2034356942="">
+                                  </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                                      class="mat-mdc-button-touch-target"></span><span
+                                      class="mat-mdc-button-ripple"></span>
+                              </a>
+
+
+                            <!-- <a type="button" class="btn btn-light" href="#">
+                <i-tabler class="routeIcon" style="color: #ff8e8e" name="trash" matListItemIcon></i-tabler></a> -->
+                          </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                  </table>
+              </div>
+          </mat-card>
+      </div>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,12 @@
+.like-btn,
+.dislike-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #333; /* Couleur par défaut */
+}
+
+.like-btn:hover,
+.dislike-btn:hover {
+  color: #007bff; /* Couleur au survol */
+}

@@ -1,0 +1,109 @@
+<h1 mat-dialog-title class="text-center" style="margin-bottom: 1rem">Add User</h1>
+
+<div mat-dialog-content class="text-center">
+  <div class="contact__form">
+    <form [formGroup]="addUserForm" #f="ngForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-12 m-b-30">
+          <div class="contact__form-input__image__container">
+            <img class="contact__form-input__image" [src]="imageUrl" alt="Avatar">
+          </div>
+          <div class="contact__form-input contact__form-input__image__btns">
+            <input type="file" accept="image/*" id="avatar" name="avatar" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+            <button type="button" mat-flat-button class="Extended-Fab" (click)="selectImage()">
+              <span class="Extended-Fab__container">
+                <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload" matListItemIcon></i-tabler>
+                <span class="Extended-Fab__text">Select Image</span>
+              </span>
+            </button>
+            <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16">
+              <span class="Extended-Fab__container">
+                <i-tabler class="routeIcon Extended-Fab__icon" name="photo-cancel" matListItemIcon></i-tabler>
+                <span class="Extended-Fab__text">Reset Image</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="col-xxl-6 col-xl-6 col-md-6 mx-auto">
+            <div class="contact__form-input">
+              <label class="contact__form-input-label" for="firstName"></label>
+              <input type="text" formControlName="firstName" placeholder="First Name" pattern="[a-zA-Z ]*" required />
+            </div>
+            <div *ngIf="formSubmitted && form['firstName']?.invalid" class="error-message">
+              <app-error [err]="form['firstName']"></app-error>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="col-xxl-6 col-xl-6 col-md-6 mx-auto">
+            <div class="contact__form-input">
+              <label class="contact__form-input-label" for="lastName"></label>
+              <input type="text" formControlName="lastName" placeholder="Last Name" pattern="[a-zA-Z ]*" required />
+            </div>
+            <div *ngIf="formSubmitted && form['lastName']?.invalid" class="error-message">
+              <app-error [err]="form['lastName']"></app-error>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="col-xxl-6 col-xl-6 col-md-6 mx-auto">
+            <div class="contact__form-input">
+              <label class="contact__form-input-label" for="phone"></label>
+              <input type="number" formControlName="phone" placeholder="Phone" min="10000000" max="99999999" required />
+            </div>
+            <div *ngIf="formSubmitted && form['phone']?.invalid" class="error-message">
+              <app-error [err]="form['phone']"></app-error>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="col-xxl-6 col-xl-6 col-md-6 mx-auto">
+            <div class="contact__form-input">
+              <label class="contact__form-input-label" for="cin"></label>
+              <input type="number" formControlName="cin" placeholder="CIN" min="10000000" max="99999999" required />
+            </div>
+            <div *ngIf="formSubmitted && form['cin']?.invalid" class="error-message">
+              <app-error [err]="form['cin']"></app-error>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="col-xxl-6 col-xl-6 col-md-6 mx-auto">
+            <div class="contact__form-input">
+              <label class="contact__form-input-label" for="email"></label>
+              <input type="email" formControlName="email" placeholder="example@example.com" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+            </div>
+            <div *ngIf="formSubmitted && form['email']?.invalid" class="error-message">
+              <app-error [err]="form['email']"></app-error>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="col-xxl-6 col-xl-6 col-md-6 mx-auto">
+            <div class="contact__form-input">
+              <label class="contact__form-input-label" for="password"></label>
+              <input type="password" formControlName="password" placeholder="Password" required />
+            </div>
+            <div *ngIf="formSubmitted && form['password']?.invalid" class="error-message">
+              <app-error [err]="form['password']"></app-error>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="roles"></label>
+            <div class="select-wrapper" style="width: 200px; height: 50px; margin: 0 auto; border-color: transparent;">
+              <select id="roles" formControlName="roles" required>
+                <option *ngFor="let role of allRoles" [value]="role.idRole">{{ role.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" style="margin-top: 1rem">
+          <button type="submit" mat-flat-button color="primary" >Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

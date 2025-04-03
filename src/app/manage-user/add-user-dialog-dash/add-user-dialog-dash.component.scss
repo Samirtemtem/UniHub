@@ -1,0 +1,120 @@
+.section__sub-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2b4eff;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.section__title {
+  font-size: 40px;
+  color: #0e1133;
+  text-transform: capitalize;
+  z-index: 1;
+  margin-bottom: 3px;
+}
+@media (max-width: 575px) {
+  .section__title {
+    font-size: 33px;
+  }
+}
+.section__title span {
+  position: relative;
+}
+.section__title span img {
+  position: absolute;
+  left: -14px;
+  bottom: 12px;
+  z-index: -1;
+  -webkit-animation: section-animation 3s infinite;
+  animation: section-animation 3s infinite;
+}
+.section__title span.yellow-bg-big img {
+  bottom: 15px;
+  width: 120%;
+  -webkit-animation: section-animation-2 3s infinite;
+  animation: section-animation-2 3s infinite;
+}
+.section__title span.yellow-bg-sm img {
+  bottom: 10px;
+  width: 120%;
+  -webkit-animation: section-animation-2 3s infinite;
+  animation: section-animation-2 3s infinite;
+}
+.section__title-wrapper {
+  position: relative;
+  z-index: 1;
+}
+.section__title-wrapper p {
+  font-size: 16px;
+  color: #53545b;
+  border-color: transparent;
+
+}
+.contact__form-input-label--full-width {
+  width: 80%;
+}
+.select-wrapper {
+  position: relative;
+  border-color: transparent;
+}
+
+.select-wrapper::after {
+  content: '\f078';
+  font-family: 'FontAwesome';
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  border-color: transparent;
+
+}
+
+
+.select-wrapper select {
+  appearance: none;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  width: 100%;
+  height: 100%;
+  border-color: transparent;
+
+}
+
+
+.error {
+  border: 2px solid red;
+  border-radius: 4px;
+  outline: none;
+  background: #f6f6f7;  
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(8, 0, 42, 0.2);
+  -moz-box-shadow: 0px 1px 4px 0px rgba(8, 0, 42, 0.2);
+  box-shadow: 0px 1px 4px 0px rgba(8, 0, 42, 0.2);
+
+
+   /* Adjust this value to match the border-radius of your input */
+}
+
+@keyframes section-animation {
+  0% {
+    width: 0;
+  }
+  15% {
+    width: 100%;
+  }
+  85% {
+    opacity: 1;
+  }
+  90% {
+    width: 100%;
+    opacity: 0;
+  }
+  to {
+    width: 0;
+    opacity: 0;
+  }
+
+ 
+}

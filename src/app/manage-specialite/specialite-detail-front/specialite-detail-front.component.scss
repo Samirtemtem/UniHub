@@ -1,0 +1,44 @@
+.detail-img {
+  &__container {
+    width: 100%;
+    height: 28rem;
+    border-radius: 2.5rem;
+  }
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2.5rem;
+}
+
+.front-card__img {
+  &__container {
+    height: 15rem;
+    width: 100%;
+  }
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front-card__img--2 {
+  &__container {
+    height: 13rem;
+    width: 100%;
+  }
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.matiere-desc {
+  max-height: 3rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  cursor: pointer;
+}

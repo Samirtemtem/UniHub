@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Alert </h1>
+<div mat-dialog-content>
+    <p>Want to delete {{data.nom}}?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button color="warn" (click)="deleteSpecialite()" cdkFocusInitial>Yes delete anyway</button>
+    <button mat-button (click)="onNoClick()">No</button>
+</div>

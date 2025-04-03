@@ -1,0 +1,89 @@
+<div class="bg-light-primary rounded p-y-30 p-x-24 m-b-30 overflow-hidden ng-star-inserted">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4 class="page-title m-0 f-s-20 f-w-600 m-b-16">Update Chambre Numero : {{chambre_data.numeroChambre}} </h4>
+      <div class="d-flex align-items-center overflow-hidden"><!----></div>
+    </div>
+    <div class="col-sm-4 text-right position-relative">
+      <div class="breadcrumb-icon">
+        <img src="/assets/images/breadcrumb/ChatBc.png" alt="breadcrumb" width="165" />
+      </div>
+    </div>
+  </div>
+</div>
+<mat-card-content>
+  <mat-card class="cardWithShadow">
+
+    <div class="row">
+      <div class="col-sm-4">
+
+        <!--        <form #f="ngForm" >-->
+        <form [formGroup]="updateform">
+
+          <div class="row">
+            <div class="col-12 m-b-30">
+              <div class="contact__form-input__image__container">
+                <img class="contact__form-input__image" [src]="imageUrl" alt="Image Preview" />
+              </div>
+              <div class="contact__form-input contact__form-input__image__btns">
+
+                <input type="file" accept="image/*" id="Image" name="userImage" ngModel #fileInput
+                  style="display: none;" (change)="onFileSelected($event)" />
+                <!-- Button to trigger file input click -->
+                <button type="button" mat-flat-button class="Extended-Fab" (click)="triggerFileInputClick()">
+                  <span class="Extended-Fab__container">
+                    <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload" matListItemIcon></i-tabler>
+                    <span class="Extended-Fab__text">Select Image</span>
+                  </span>
+                </button>
+                <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16"
+                  (click)="resetImage()">
+                  <span class="Extended-Fab__container">
+
+                    <span class="Extended-Fab__text">Reset Image</span>
+                  </span>
+                </button>
+
+              </div>
+            </div>
+
+
+
+              <div class="col-md-5 offset-md-4 mb-3">
+                <label class="form-label" for="numero">Numero</label>
+                <input class="form-control" type="text" placeholder="Numero" id="numero" name="numero"
+                  formControlName="numero" />
+              </div>
+
+              <div
+                *ngIf="updateform.get('numero')?.invalid && (updateform.get('numero')?.touched || updateform.get('numero')?.dirty)"
+                class="error-message">
+<!--                <app-error [err]="updateform.get('numero')"></app-error>-->
+              </div>
+
+              <div class="col-md-5 offset-md-4 mb-3">
+                <label class="form-label" for="type">Type</label>
+                <select class="form-select" id="type" name="type" formControlName="type">
+                  <option *ngFor="let item of type" [value]="item" [selected]="chambre_data.typeChambre">{{ item }}
+                  </option>
+                </select>
+              </div>
+
+
+
+            <div class="contact__form-input contact__form-input__image__btns">
+              <button type="button" mat-flat-button class="Extended-Fab" (click)="sendDataToParent()"
+                [disabled]="updateform.invalid">
+                <span class="Extended-Fab__container">
+                  <span class="Extended-Fab__text">Update</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </mat-card>
+</mat-card-content>

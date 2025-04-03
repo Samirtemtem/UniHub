@@ -1,0 +1,106 @@
+<div class="bg-light-primary rounded p-y-30 p-x-24 m-b-30 overflow-hidden ng-star-inserted">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4 class="page-title m-0 f-s-20 f-w-600 m-b-16">Update Restaurant  : {{restaurant_data.nomRestaurant}} </h4>
+      <div class="d-flex align-items-center overflow-hidden"><!----></div>
+    </div>
+    <div class="col-sm-4 text-right position-relative">
+      <div class="breadcrumb-icon">
+        <img src="/assets/images/breadcrumb/ChatBc.png" alt="breadcrumb" width="165"/>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-card-content>
+  <mat-card class="cardWithShadow">
+
+    <div class="row">
+      <div class="col-sm-4">
+
+        <!--        <form #f="ngForm" >-->
+        <form [formGroup]="updateform">
+
+          <div class="row">
+            <div class="col-12 m-b-30">
+              <div class="contact__form-input__image__container">
+                <img class="contact__form-input__image" [src]="imageUrl" alt="Image Preview"/>
+              </div>
+              <div class="contact__form-input contact__form-input__image__btns">
+
+                <input type="file" accept="image/*" id="Image" name="userImage" ngModel #fileInput
+                       style="display: none;" (change)="onFileSelected($event)"/>
+                <!-- Button to trigger file input click -->
+                <button type="button" mat-flat-button class="Extended-Fab" (click)="triggerFileInputClick()">
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload"
+                                          matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Select Image</span>
+                            </span>
+                </button>
+                <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16"
+                        (click)="resetImage()">
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="photo-cancel"
+                                          matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Reset Image</span>
+                            </span>
+                </button>
+
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-4 offset-md-4 mb-3">
+                <label class="form-label" for="nomRestaurant">Nom Restaurant :</label>
+                <input class="form-control" type="text" placeholder="nomRestaurant" id="nomRestaurant" name="nomRestaurant"
+                       formControlName="nomRestaurant"/>
+              </div>
+
+              <div *ngIf="updateform.get('nomRestaurant')?.invalid && (updateform.get('nomRestaurant')?.touched || updateform.get('nomRestaurant')?.dirty)" class="error-message">
+                <app-error [err]="updateform.get('nomRestaurant')"></app-error>
+              </div>
+            </div>
+
+
+
+            <div class="row">
+              <div class="col-md-4 offset-md-4 mb-3">
+                <label class="form-label" for="specialite">Specialite Restaurant :</label>
+                <input class="form-control" type="text" placeholder="specialite" id="specialite" name="specialite"
+                       formControlName="specialite"/>
+              </div>
+
+              <div *ngIf="updateform.get('specialite')?.invalid && (updateform.get('specialite')?.touched || updateform.get('specialite')?.dirty)" class="error-message">
+                <app-error [err]="updateform.get('specialite')"></app-error>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 offset-md-4 mb-3">
+                <label class="form-label" for="menu">Plat du jour  :</label>
+                <input class="form-control" type="text" placeholder="menu" id="menu" name="menu"
+                       formControlName="menu"/>
+              </div>
+
+              <div *ngIf="updateform.get('menu')?.invalid && (updateform.get('menu')?.touched || updateform.get('menu')?.dirty)" class="error-message">
+                <app-error [err]="updateform.get('menu')"></app-error>
+              </div>
+            </div>
+
+            <div class="contact__form-input contact__form-input__image__btns">
+              <button type="button" mat-flat-button class="Extended-Fab" (click)="sendDataToParent()" [disabled]="updateform.invalid">
+                    <span class="Extended-Fab__container">
+                        <span class="Extended-Fab__text">Update</span>
+                    </span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </mat-card>
+</mat-card-content>
+

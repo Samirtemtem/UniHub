@@ -1,0 +1,57 @@
+<h1 mat-dialog-title class="text-center mx-auto" style="margin-bottom: 1rem">Update Role</h1>
+
+<div mat-dialog-content class="text-center mx-auto">
+  <div class="contact__form">
+    <form [formGroup]="frombuil" #f="ngForm">
+      <!-- Image Upload Section -->
+      <div class="row">
+        <div class="col-12 m-b-30">
+          <div class="row">
+            <div class="col-12 m-b-30">
+              <div class="contact__form-input__image__container">
+                <img class="contact__form-input__image" [src]="imageUrl" alt="Avatar">
+              </div>
+              <div class="contact__form-input contact__form-input__image__btns">
+                <input type="file" accept="image/*" id="avatar" name="avatar" #fileInput style="display: none;">
+
+                <button type="button" mat-flat-button class="Extended-Fab">
+                  <span class="Extended-Fab__container">
+                    <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload" matListItemIcon></i-tabler>
+                    <span class="Extended-Fab__text">Select Image</span>
+                  </span>
+                </button>
+
+                <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16">
+                  <span class="Extended-Fab__container">
+                    <i-tabler class="routeIcon Extended-Fab__icon" name="photo-cancel" matListItemIcon></i-tabler>
+                    <span class="Extended-Fab__text">Reset Image</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="d-flex justify-content-center">
+        <div class="col-xxl-6 col-xl-6 col-md-6 mx-auto">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="name"></label>
+            <input type="text" formControlName="name" placeholder="name" pattern="[a-zA-Z ]*" required />
+            <div *ngIf="formSubmitted && form['name']?.invalid" class="error-message">
+              <app-error [err]="form['name']"></app-error>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button Section -->
+      <div class="col-12" style="margin-top: 1rem">
+        <button type="submit" mat-flat-button color="primary" (click)="updateRole(frombuil)">
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

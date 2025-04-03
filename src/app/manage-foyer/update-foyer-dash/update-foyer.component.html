@@ -1,0 +1,77 @@
+<h1 mat-dialog-title style="margin-bottom: 2rem">Modifier Université</h1>
+
+<div mat-dialog-content>
+  <!-- Your form or content for adding a user goes here -->
+  <div class="contact__form">
+    <form [formGroup]="frombuil">
+      <div class="row">
+        <div class="col-12 m-b-30">
+
+        </div>
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="nomFoyer">Nom Foyer</label>
+            <input type="text" placeholder="nom Foyer" id="nomFoyer" formControlName="nomFoyer" />
+          </div>
+        </div>
+        <div *ngIf="frombuil.get('nomFoyer')?.invalid && frombuil.get('nomFoyer')?.touched"
+          [ngClass]="{'error-message': true}">
+          <div *ngIf="frombuil.get('nomFoyer')?.errors?.['required']">
+            required.
+          </div>
+          <div *ngIf="frombuil.get('nomFoyer')?.errors?.['pattern']">
+            Le nom de foyer doit contenir uniquement des lettres.
+          </div>
+        </div>
+
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="capacityFoyer"> Capacite Foyer</label>
+            <input type="number" placeholder="capacite Foyer" id="capacityFoyer" formControlName="capacityFoyer" />
+          </div>
+        </div>
+        <div *ngIf="frombuil.get('capacityFoyer')?.invalid && frombuil.get('capacityFoyer')?.touched"
+          [ngClass]="{'error-message': true}">
+          <div *ngIf="frombuil.get('capacityFoyer')?.errors?.['required']">
+            required.
+          </div>
+          <div *ngIf="frombuil.get('capacityFoyer')?.errors?.['min']">
+            La capacité de foyer doit contenir minimum 500.
+          </div>
+          <div *ngIf="frombuil.get('capacityFoyer')?.errors?.['max']">
+            La capacité de foyer doit contenir maximum 2000.
+          </div>
+        </div>
+
+
+<!--        <div class="col-xxl-6 col-xl-6 col-md-6">-->
+<!--          <div class="contact__form-input">-->
+<!--            <label class="contact__form-input-label" for="superficie"> Superficie de Foyer</label>-->
+<!--            <input type="number" placeholder="Superficie Foyer" id="superficie" formControlName="superficie" />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div *ngIf="frombuil.get('superficie')?.invalid && frombuil.get('superficie')?.touched"-->
+<!--          [ngClass]="{'error-message': true}">-->
+<!--          <div *ngIf="frombuil.get('superficie')?.errors?.['required']">-->
+<!--            required.-->
+<!--          </div>-->
+
+<!--        </div>-->
+
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+
+            <label for="newImageFoyer">Nouvelle image de foyer</label>
+            <input type="file" formControlName="newImageFoyer" id="newImageFoyer" />
+
+        </div>
+
+        <div class="col-12" style="margin-top: 1rem">
+          <button type="submit" mat-flat-button color="primary" (click)="updateFoyer(frombuil.value)"
+            [disabled]="frombuil.invalid">
+            Enregistrer
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

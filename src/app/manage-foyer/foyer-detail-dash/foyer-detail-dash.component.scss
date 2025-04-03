@@ -1,0 +1,21 @@
+.foyer-details {
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.foyer-details > div {
+    margin-bottom: 15px; /* Add space between lines */
+}
+
+.detail-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.detail-value {
+    color: #333;
+}

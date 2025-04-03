@@ -1,0 +1,51 @@
+<div class="course__item white-bg mb-30 fix">
+    <div class="course__thumb w-img p-relative fix front-card__img__container">
+        <a [routerLink]="['/specialities',specialite.id]" class="front-card__img">
+            <img [src]="uploadUrl+specialite.imageUrl" alt="" />
+        </a>
+        <!-- <div class="course__tag">
+            <a href="#">Art & Design</a>
+        </div> -->
+    </div>
+    <div class="course__content">
+        <h3 class="course__title">
+            <a href="#"> {{specialite.nom}} </a>
+        </h3>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <!-- <div class="course__teacher d-flex align-items-center">
+                <div class="course__teacher-thumb mr-15">
+                    <img style="width: 45px;height: 45px;" src="../../../../assets/images/teacher/esprit.jpg" alt="" />
+                </div>
+                <h6>
+                    <p style="margin-bottom: -.06rem;">Universite</p>
+                    <a href="instructor-details.html">
+                        {{specialite.universite.nomUniversite}} </a>
+                </h6>
+            </div> -->
+
+            <div class="course__teacher d-flex align-items-center">
+                <h6>
+                    <p style="margin-bottom: -.06rem;">Diplome</p>
+                    <p style="margin-bottom: 0; font-weight: 600; text-transform: capitalize;">
+                        {{specialite.diplome}}</p>
+                </h6>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="course__more d-flex justify-content-between align-items-center">
+        <!-- <div class="course__lesson">
+            <span style="font-size: .8rem;"><i class="far fa-book-alt"></i>
+                {{currentCount[i] ?? 0}}
+                Matieres</span>
+        </div> -->
+        <div class="course__btn">
+            <a [routerLink]="['/specialities',specialite.id]" class="link-btn">
+                Show Details
+                <i class="far fa-arrow-right"></i>
+                <i class="far fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>

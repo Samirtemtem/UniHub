@@ -1,0 +1,112 @@
+<h1 mat-dialog-title style="margin-bottom: 1rem">Modifier Université</h1>
+<!-- <div class="section__title-wrapper">
+  <h2 mat-dialog-title class="section__title">
+    Get in<span class="yellow-bg yellow-bg-big"
+      >touch<img src="./assets/images/shape/yellow-bg.png" alt=""
+    /></span>
+  </h2>
+</div> -->
+<div mat-dialog-content>
+  <!-- Your form or content for adding a user goes here -->
+  <div class="contact__form">
+    <form [formGroup]="frombuil" >
+      <div class="row">
+        <div class="col-12 m-b-30">
+          <div class="contact__form-input__image__container">
+            <img class="contact__form-input__image" [src]="image" alt="Image Preview" />
+          </div>
+          <div class="contact__form-input contact__form-input__image__btns">
+            <input type="file" accept="image/*" id="Image" name="userImage" #fileInput
+                   style="display: none;" (change)="onFileSelected($event)" formControlName="image" />
+            <!-- Button to trigger file input click -->
+            <button type="button" mat-flat-button class="Extended-Fab" (click)="selectImage()">
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="cloud-upload"
+                                          matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Select Image</span>
+                            </span>
+            </button>
+
+            <button type="button" mat-flat-button class="Extended-Fab Extended-Fab--2 m-l-16"
+                    (click)="resetAvatarImage()" >
+                            <span class="Extended-Fab__container">
+                                <i-tabler class="routeIcon Extended-Fab__icon" name="photo-cancel"
+                                          matListItemIcon></i-tabler>
+                                <span class="Extended-Fab__text">Reset Image</span>
+                            </span>
+            </button>
+          </div>
+        </div>
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="nomUniversite">Nom Universite</label>
+            <input type="text" placeholder="Nom Universite" id="nomUniversite" formControlName="nomUniversite" />
+          </div>
+        </div>
+
+        <div *ngIf="frombuil.get('nomUniversite')?.invalid  && frombuil.get('nomUniversite')?.touched" class="alert-danger">
+          <app-error [err]="frombuil.get('nomUniversite')"></app-error>
+        </div>
+
+
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+          <div class="contact__form-input">
+            <label for="adresseUniversite">Adresse Universite</label>
+            <input type="text" placeholder="Adresse Universite" id="adresseUniversite" formControlName="adresseUniversite"/>
+          </div>
+        </div>
+        <div *ngIf="frombuil.get('adresseUniversite')?.invalid && frombuil.get('adresseUniversite')?.touched" class="alert-danger">
+          <app-error [err]="frombuil.get('adresseUniversite')"></app-error>
+        </div>
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="ville">Ville</label>
+            <input type="text" placeholder="ville" id="ville" formControlName="ville" />
+          </div>
+        </div>
+        <div *ngIf="frombuil.get('ville')?.invalid && frombuil.get('ville')?.touched" class="alert-danger">
+          <app-error [err]="frombuil.get('ville')"></app-error>
+        </div>
+
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="telUniversite">Telephone Universite</label>
+            <input type="text" placeholder="num tel" id="telUniversite" formControlName="telUniversite" />
+          </div>
+        </div>
+        <div *ngIf="frombuil.get('telUniversite')?.invalid && frombuil.get('telUniversite')?.touched" class="alert-danger">
+          <app-error [err]="frombuil.get('telUniversite')"></app-error>
+        </div>
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="descriptionUniversite">Description</label>
+            <textarea placeholder="Entrer la Description" id="descriptionUniversite" formControlName="descriptionUniversite"></textarea>
+          </div>
+        </div>
+
+        <div *ngIf="frombuil.get('descriptionUniversite')?.invalid && frombuil.get('descriptionUniversite')?.touched" class="alert-danger">
+          <app-error [err]="frombuil.get('descriptionUniversite')"></app-error>
+        </div>
+
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="emailUinversite">Email</label>
+            <input type="email" placeholder="example@gmail.com" id="emailUinversite" formControlName="emailUinversite" />
+          </div>
+        </div>
+        <div *ngIf="frombuil.get('emailUinversite')?.invalid && frombuil.get('emailUinversite')?.touched" class="alert-danger">
+          <app-error [err]="frombuil.get('emailUinversite')"></app-error>
+        </div>
+
+        <div class="col-12" style="margin-top: 1rem">
+          <button type="submit" mat-flat-button color="primary"  (click)="updateUniversite(frombuil.value)" [disabled]="frombuil.invalid">
+            Enregistrer
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="closeDialog()"></button>
+</div> -->

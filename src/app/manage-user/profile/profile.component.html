@@ -1,0 +1,77 @@
+<h1 mat-dialog-title style="margin-bottom: 1rem" class="text-center mx-auto">Profile</h1>
+<div mat-dialog-content>
+  <div class="contact__form">
+    <form [formGroup]="frombuil" #f="ngForm" (ngSubmit)="submitForm(f.value)">
+
+      <div class="row" class="text-center mx-auto">
+        <div class="col-12 m-b-30">
+
+          <div class="row">
+            <div class="col-12 m-b-30">
+              <div class="contact__form-input__image__container">
+                <img class="contact__form-input__image" [src]="imageUrl" alt="Avatar">
+              </div>
+            
+
+          <div class="col-12">
+            <div class="contact__form-input">
+              <label for="firstName"> </label>
+              <input type="text" formControlName="firstName" placeholder="First Name" pattern="[a-zA-Z ]*" required [readonly]="true" />
+              <div *ngIf="formSubmitted && frombuil.get('firstName')?.invalid" class="error-message">
+                <app-error [err]="frombuil.get('firstName')"></app-error>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="contact__form-input">
+              <label for="lastName"> </label>
+              <input type="text" formControlName="lastName" placeholder="Last Name" pattern="[a-zA-Z ]*" required [readonly]="true" />
+              <div *ngIf="formSubmitted && frombuil.get('lastName')?.invalid" class="error-message">
+                <app-error [err]="frombuil.get('lastName')"></app-error>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="contact__form-input">
+              <label for="email"></label>
+              <input type="email" formControlName="email" placeholder="example@example.com" [readonly]="true" />
+              <div *ngIf="formSubmitted && frombuil.get('email')?.invalid" class="error-message">
+                <app-error [err]="frombuil.get('email')"></app-error>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="contact__form-input">
+              <label for="cin"></label>
+              <input type="number" formControlName="cin" placeholder="CIN" [readonly]="true" />
+              <div *ngIf="formSubmitted && frombuil.get('cin')?.invalid" class="error-message">
+                <app-error [err]="frombuil.get('cin')"></app-error>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="contact__form-input">
+              <label for="phone"></label>
+              <input type="number" formControlName="phone" placeholder="Phone" min="10000000" max="99999999" required [readonly]="true" />
+              <div *ngIf="formSubmitted && frombuil.get('phone')?.invalid" class="error-message">
+                <app-error [err]="frombuil.get('phone')"></app-error>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12" style="margin-top: 1rem">
+      
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,255 @@
+<div class="bg-light-primary rounded p-y-30 p-x-24 m-b-30 overflow-hidden ng-star-inserted">
+  <div class="row">
+    <div class="col-sm-8">
+      <h4 class="page-title m-0 f-s-20 f-w-600 m-b-16">Events list</h4>
+      <div class="d-flex align-items-center overflow-hidden"><!----></div>
+    </div>
+    <div class="col-sm-4 text-right position-relative">
+      <div class="breadcrumb-icon">
+        <img src="/assets/images/breadcrumb/ChatBc.png" alt="breadcrumb" width="165" />
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="contact__form-input" style="display: flex">
+            <button mat-icon-button (click)="getEventsSortedByDateAsc()">
+              <mat-icon>arrow_upward</mat-icon>
+            </button>
+            <!-- Bouton de tri descendant -->
+                     <!-- Bouton de tri descendant -->
+            <button mat-icon-button (click)="getEventsSortedByDateDesc()">
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
+          </div>
+        
+        </div>
+       
+  
+        <div class="col-sm-8 text-right">
+          <button
+            type="button"
+            mat-flat-button
+            class="Extended-Fab"
+            (click)="openAddEventDialog()"
+          >
+                      <span class="Extended-Fab__container">
+                        <i-tabler
+                          style="margin-right: 0.5rem"
+                          class="routeIcon Extended-Fab__icon"
+                          name="circle-plus"
+                          matListItemIcon
+                        ></i-tabler>
+                        <span class="Extended-Fab__text">Add Event</span>
+                      </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="col" style="margin-top: 2rem">
+        <mat-card class="cardWithShadow">
+          <div class="table-responsive m-t-16">
+            <table mat-table [dataSource]="dataSource" class="w-100">
+              <!-- nom Column -->
+              <ng-container matColumnDef="image">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  Image
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <div
+                    class="d-flex align-items-center justify-content-start"
+                  >
+                    <div class="tableImage__container">
+                      <img
+                        [src]=" uploadUrl + element.imageEvent"
+                        alt="users"
+                        width="40"
+                        style="border-radius: 0.6rem"
+                        class="tableImage"
+                      />
+                    </div>
+
+                  </div>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="nom">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  Nom
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let element"
+                  class="mat-body-1"
+                >
+                  {{ element.nomEvent}}
+                </td>
+              </ng-container>
+              <!-- dateDeb Column -->
+              <ng-container matColumnDef="dateDeb">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  Start Date
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let element"
+                  class="mat-body-1"
+                >
+                  {{ element.dateDebEvent | date : "yyyy-MM-dd" }}
+                </td>
+              </ng-container>
+
+              <!-- dateFin Column -->
+              <ng-container matColumnDef="dateFin">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  End Date
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let element"
+                  class="mat-body-1"
+                >
+                  {{ element.dateFinEvent | date : "yyyy-MM-dd" }}
+                </td>
+              </ng-container>
+
+              <!-- description Column -->
+              <ng-container matColumnDef="Description">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  Description
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let element"
+                  class="mat-body-1"
+                >
+                  {{ element.descriptionEvent}}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="Location">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  Location
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let element"
+                  class="mat-body-1"
+                >
+                  {{ element.lieuEvent}}
+                </td>
+              </ng-container>
+
+              <!-- action Column -->
+              <ng-container matColumnDef="action">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  #Action
+                </th>
+                <td
+                  mat-cell
+                  *matCellDef="let element"
+                  class="mat-body-1"
+                >
+                  <div style="display: flex">
+                    <a
+                      (click)="openUpdateDialog(element.idEvent)"
+                      type="button"
+                      mat-icon-button=""
+                      color="primary"
+                      class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                      mat-button-is-fab="false"
+                    >
+                                <span
+                                  class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+                                ></span
+                                ><i-tabler
+                      style="color: #87a7ff"
+                      name="edit"
+                      class="icon-20"
+                      _nghost-ng-c2034356942=""
+                    >
+                    </i-tabler
+                    ><span class="mat-mdc-focus-indicator"></span
+                    ><span
+                      class="mat-mdc-button-touch-target"
+                    ></span
+                    ><span class="mat-mdc-button-ripple"></span>
+                    </a>
+
+                    <span class="m-x-1"></span>
+
+                    <a
+                      (click)="onDeleteEvent(element.idEvent)"
+                      type="button"
+                      mat-icon-button=""
+                      color="primary"
+                      class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                      mat-button-is-fab="false"
+                    >
+                                <span
+                                  class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+                                ></span
+                                ><i-tabler
+                      style="color: #ff8e8e"
+                      name="trash"
+                      class="icon-20"
+                      _nghost-ng-c2034356942=""
+                    >
+                    </i-tabler
+                    ><span class="mat-mdc-focus-indicator"></span
+                    ><span
+                      class="mat-mdc-button-touch-target"
+                    ></span
+                    ><span class="mat-mdc-button-ripple"></span>
+                    </a>
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns"
+              ></tr>
+            </table>
+          </div>
+        </mat-card>
+      </div>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+    </mat-card-content>
+
+

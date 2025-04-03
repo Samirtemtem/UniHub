@@ -1,0 +1,62 @@
+<h1 mat-dialog-title style="margin-bottom: 2rem">Ajouter Foyer</h1>
+
+<div mat-dialog-content>
+
+  <div class="contact__form">
+    <form #f="ngForm" (ngSubmit)="submitForm(f.value)">
+      <div class="row">
+
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="capacityFoyer">Capacite foyer</label>
+            <input type="number" placeholder="Capacite Foyer" id="capacityFoyer" name="capacityFoyer" #t="ngModel"
+              ngModel required min="500" max="2000" />
+            <div *ngIf="t.invalid">
+              <app-error [err]="t"></app-error>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+          <div class="contact__form-input">
+            <label for="nomFoyer">Nom foyer</label>
+            <input type="text" placeholder="Nom Foyer" id="nomFoyer" name="nomFoyer" #n="ngModel" ngModel required
+              pattern="[a-zA-Z ]*" />
+
+            <div *ngIf="n.invalid">
+
+              <app-error [err]="n"></app-error>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+<!--          <div class="contact__form-input">-->
+<!--            <label for="superficie">Superficie de foyer</label>-->
+<!--            <input type="number" placeholder="Superficie Foyer" id="superficie" #s="ngModel" name="superficie" ngModel-->
+<!--              pattern="[0-9]+" required />-->
+<!--            <div *ngIf="s.invalid">-->
+<!--              <app-error [err]="s"></app-error>-->
+<!--            </div>-->
+
+<!--          </div>-->
+        </div>
+        <div class="col-xxl-6 col-xl-6 col-md-6">
+          <div class="">
+            <label for="imageFoyer">image de foyer</label>
+            <input type="file" ngModel name="imageFoyer" id="imageFoyer" required />
+
+          </div>
+        </div>
+
+        <div class="col-12" style="margin-top: 1rem">
+          <button type="submit" mat-flat-button color="primary" [disabled]="f.invalid">
+            Ajouter
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

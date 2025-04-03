@@ -1,0 +1,168 @@
+<h1 mat-dialog-title style="margin-bottom: 1rem">Add Event</h1>
+
+<div mat-dialog-content>
+  <!-- Your form or content for adding a user goes here -->
+  <div class="contact__form">
+    <form #f="ngForm" (ngSubmit)="submitForm(f.value)">
+      <div class="row">
+        <div class="col-12 m-b-30">
+          <div class="contact__form-input__image__container">
+            <img
+              class="contact__form-input__image"
+              [src]="imageUrl"
+              alt="Image Preview"
+            />
+          </div>
+          <div class="contact__form-input contact__form-input__image__btns">
+            <input
+              type="file"
+              accept="image/*"
+              id="Image"
+              name="imageEvent"
+              ngModel
+              #fileInput
+              style="display: none"
+              (change)="onFileSelected($event)"
+            />
+
+            <!-- Button to trigger file input click -->
+            <button
+              type="button"
+              mat-flat-button
+              class="Extended-Fab"
+              (click)="triggerFileInputClick()"
+            >
+              <span class="Extended-Fab__container">
+                <i-tabler
+                  class="routeIcon Extended-Fab__icon"
+                  name="cloud-upload"
+                  matListItemIcon
+                ></i-tabler>
+                <span class="Extended-Fab__text">Select Image</span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              mat-flat-button
+              class="Extended-Fab Extended-Fab--2 m-l-16"
+              (click)="resetAvatarImage()"
+            >
+              <span class="Extended-Fab__container">
+                <i-tabler
+                  class="routeIcon Extended-Fab__icon"
+                  name="photo-cancel"
+                  matListItemIcon
+                ></i-tabler>
+                <span class="Extended-Fab__text">Reset Image</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="nom">Name</label>
+            <input
+              #nomField="ngModel"
+              type="text"
+              placeholder="Event Name"
+              id="nom"
+              name="nomEvent"
+              ngModel
+              required
+              minlength="3"
+              pattern="[a-zA-Z]+[a-zA-Z ]*"
+              [ngClass]="{ inputError: nomField.invalid && nomField.touched }"
+            />
+
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label for="Description">Description</label>
+            <textarea
+              #descField="ngModel"
+              placeholder="Enter Your Description"
+              id="Description"
+              name="descriptionEvent"
+              ngModel
+              required
+              minlength="3"
+              pattern="[a-zA-Z]+[a-zA-Z ]*"
+              [ngClass]="{ inputError: descField.invalid && descField.touched }"
+            ></textarea>
+
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="contact__form-input">
+            <label class="contact__form-input-label" for="nom">Location</label>
+            <input
+              #locationField="ngModel"
+              type="text"
+              placeholder="Event location"
+              id="lieuEvent"
+              name="lieuEvent"
+              ngModel
+            />
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="contact__form-input">
+            <label for="dateDebEvent">Start Date</label>
+            <div style="display: flex">
+              <input
+                type="text"
+                placeholder="YYYY-MM-DD"
+                id="dateDebEvent"
+                name="dateDebEvent"
+                matInput
+                [matDatepicker]="pickerDeb"
+                ngModel
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="pickerDeb"
+                style="margin: 0.7rem 0 0 -3rem"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerDeb></mat-datepicker>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="contact__form-input">
+            <label for="dateFinEvent">End Date</label>
+            <div style="display: flex">
+              <input
+                type="text"
+                placeholder="YYYY-MM-DD"
+                id="dateFinEvent"
+                name="dateFinEvent"
+                matInput
+                [matDatepicker]="pickerFin"
+                ngModel
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="pickerFin"
+                style="margin: 0.7rem 0 0 -3rem"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerFin></mat-datepicker>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12" style="margin-top: 1rem">
+          <button type="submit" mat-flat-button color="primary">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="closeDialog()"></button>
+</div> -->

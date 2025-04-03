@@ -1,0 +1,30 @@
+
+.error-border {
+    border: 2px solid red;
+    border-radius: 4px;
+    outline: none;
+    background: #f6f6f7;  
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(8, 0, 42, 0.2);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(8, 0, 42, 0.2);
+    box-shadow: 0px 1px 4px 0px rgba(8, 0, 42, 0.2);
+  
+  
+     /* Adjust this value to match the border-radius of your input */
+  }
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Si vous voulez occuper toute la hauteur du conteneur parent */
+  }
+  
+  /* Styles supplémentaires pour les messages d'erreur */
+  .error-container div {
+    color: red;
+    /* Ajoutez d'autres styles au besoin */
+  }
+  
+  .error-message {
+    display: none; /* Hide the error message */
+  }

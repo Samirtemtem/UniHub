@@ -1,0 +1,276 @@
+<header>
+  <div
+    id="header-sticky"
+    class="header__area header__transparent header__padding"
+  >
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-2">
+          <div class="header__left d-flex">
+            <div class="logo">
+              <a routerLink="/home">
+                <img
+                  src="../../../../assets/front/img/logo/logo.png"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <div class="header__category d-none d-lg-block"></div>
+          </div>
+        </div>
+        <div class="col-10">
+          <div
+            class="header__right d-flex justify-content-end align-items-center"
+          >
+            <div class="main-menu">
+              <nav id="mobile-menu">
+                <ul>
+                  <li>
+                    <a routerLink="/universities">Universities</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['/specialities']">Specialities</a>
+                  </li>
+               
+                  <!-- <li>
+                    <a href="#">Events</a>
+                  </li> -->
+                  <li>
+                    <a routerLink="/restaurants">Restaurants</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['/evenement']">Event</a>
+                  </li>
+              
+                  <li>
+                    <a routerLink="/news/front">News</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- <div class="header__search p-relative ml-50 d-none d-md-block">
+              <form action="#">
+                <input type="text" placeholder="Search..." />
+                <button type="submit"><i class="fad fa-search"></i></button>
+              </form>
+            </div> -->
+            <div
+              *ngIf="!isLoggedIn"
+              class="header__btn ml-20 d-sm-block"
+              style="margin-left: 2rem"
+            >
+              <a routerLink="signup" class="e-btn">Sign Up</a>
+            </div>
+            <div
+              *ngIf="!isLoggedIn"
+              class="header__btn ml-20 d-sm-block"
+              style="margin-left: 2rem; margin-right: 2rem"
+            >
+              <a routerLink="login" class="e-btn e-btn-border">Sign In</a>
+            </div>
+
+            <button
+              *ngIf="isLoggedIn"
+              mat-icon-button
+              [matMenuTriggerFor]="profilemenu"
+              aria-label="Notifications"
+            >
+              <img
+                src="/assets/images/profile/user.png"
+                class="rounded-circle object-cover"
+                style="
+                  width: 50px;
+                  height: 50px;
+                  transform: translate(-30%, -30%);
+                "
+                alt="avatar"
+              />
+            </button>
+            <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow">
+              <button mat-menu-item (click)="openProfileDialog()">
+                <mat-icon class="d-flex align-items-center">
+                  <i-tabler name="user" class="icon-18 d-flex"></i-tabler>
+                </mat-icon>
+                My Profile
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="d-flex align-items-center"
+                  ><i-tabler
+                    name="mail"
+                    class="icon-18 d-flex"
+                  ></i-tabler></mat-icon
+                >My Account
+              </button>
+              <button mat-menu-item>
+                <mat-icon class="d-flex align-items-center"
+                  ><i-tabler
+                    name="list-check"
+                    class="icon-18 d-flex"
+                  ></i-tabler></mat-icon
+                >My Task
+              </button>
+
+              <div class="p-x-12 m-t-12">
+                <button
+                  mat-stroked-button
+                  color="primary"
+                  class="w-100"
+                  (click)="onLogout()"
+                >
+                  Logout
+                </button>
+              </div>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- cart mini area start -->
+<div class="cartmini__area">
+  <div class="cartmini__wrapper">
+    <div class="cartmini__title">
+      <h4>Shopping cart</h4>
+    </div>
+    <div class="cartmini__close">
+      <button type="button" class="cartmini__close-btn">
+        <i class="fal fa-times"></i>
+      </button>
+    </div>
+    <div class="cartmini__widget">
+      <div class="cartmini__inner">
+        <ul>
+          <li>
+            <div class="cartmini__thumb">
+              <a href="#">
+                <img
+                  src="../../../../assets/front/img/course/sm/cart-1.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="cartmini__content">
+              <h5><a href="#">Strategy law and organization Foundation </a></h5>
+              <div class="product-quantity mt-10 mb-10">
+                <span class="cart-minus">-</span>
+                <input class="cart-input" type="text" value="1" />
+                <span class="cart-plus">+</span>
+              </div>
+              <div class="product__sm-price-wrapper">
+                <span class="product__sm-price">$46.00</span>
+              </div>
+            </div>
+            <a href="#" class="cartmini__del"><i class="fal fa-times"></i></a>
+          </li>
+          <li>
+            <div class="cartmini__thumb">
+              <a href="#">
+                <img
+                  src="../../../../assets/front/img/course/sm/cart-2.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="cartmini__content">
+              <h5><a href="#">Fundamentals of music theory Learn new</a></h5>
+              <div class="product-quantity mt-10 mb-10">
+                <span class="cart-minus">-</span>
+                <input class="cart-input" type="text" value="1" />
+                <span class="cart-plus">+</span>
+              </div>
+              <div class="product__sm-price-wrapper">
+                <span class="product__sm-price">$32.00</span>
+              </div>
+            </div>
+            <a href="#" class="cartmini__del"><i class="fal fa-times"></i></a>
+          </li>
+          <li>
+            <div class="cartmini__thumb">
+              <a href="#">
+                <img
+                  src="../../../../assets/front/img/course/sm/cart-3.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="cartmini__content">
+              <h5><a href="#">Strategy law and organization Foundation </a></h5>
+              <div class="product-quantity mt-10 mb-10">
+                <span class="cart-minus">-</span>
+                <input class="cart-input" type="text" value="1" />
+                <span class="cart-plus">+</span>
+              </div>
+              <div class="product__sm-price-wrapper">
+                <span class="product__sm-price">$62.00</span>
+              </div>
+            </div>
+            <a href="#" class="cartmini__del"><i class="fal fa-times"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="cartmini__checkout">
+        <div class="cartmini__checkout-title mb-30">
+          <h4>Subtotal:</h4>
+          <span>$113.00</span>
+        </div>
+        <div class="cartmini__checkout-btn">
+          <a href="cart.html" class="e-btn e-btn-border mb-10 w-100">
+            <span></span> view cart</a
+          >
+          <a href="checkout.html" class="e-btn w-100">
+            <span></span> checkout</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="body-overlay"></div>
+<!-- cart mini area end -->
+
+<!-- sidebar area start -->
+<div class="sidebar__area">
+  <div class="sidebar__wrapper">
+    <div class="sidebar__close">
+      <button class="sidebar__close-btn" id="sidebar__close-btn">
+        <span><i class="fal fa-times"></i></span>
+        <span>close</span>
+      </button>
+    </div>
+    <div class="sidebar__content">
+      <div class="logo mb-40">
+        <a href="index.html">
+          <img src="../../../../assets/front/img/logo/logo.png" alt="logo" />
+        </a>
+      </div>
+      <div class="mobile-menu fix"></div>
+
+      <div class="sidebar__search p-relative mt-40">
+        <form action="#">
+          <input type="text" placeholder="Search..." />
+          <button type="submit"><i class="fad fa-search"></i></button>
+        </form>
+      </div>
+      <div class="sidebar__cart mt-30">
+        <a href="#">
+          <div class="header__cart-icon">
+            <svg viewBox="0 0 24 24">
+              <circle class="st0" cx="9" cy="21" r="1" />
+              <circle class="st0" cx="20" cy="21" r="1" />
+              <path
+                class="st0"
+                d="M1,1h4l2.7,13.4c0.2,1,1,1.6,2,1.6h9.7c1,0,1.8-0.7,2-1.6L23,6H6"
+              />
+            </svg>
+          </div>
+          <span class="cart-item">2</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- sidebar area end -->
+<div class="body-overlay"></div>
+<!-- sidebar area end -->

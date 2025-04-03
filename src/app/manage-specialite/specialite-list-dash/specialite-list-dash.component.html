@@ -1,0 +1,176 @@
+<div class="bg-light-primary rounded p-y-30 p-x-24 m-b-30 overflow-hidden ng-star-inserted">
+    <div class="row">
+        <div class="col-sm-8">
+            <h4 class="page-title m-0 f-s-20 f-w-600 m-b-16">Specialities list</h4>
+            <div class="d-flex align-items-center overflow-hidden"><!----></div>
+        </div>
+        <div class="col-sm-4 text-right position-relative">
+            <div class="breadcrumb-icon">
+                <img src="/assets/images/breadcrumb/ChatBc.png" alt="breadcrumb" width="165" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="contact__form-input" style="display: flex;">
+                    <input style="background-color: transparent;" type="text" placeholder="Search" id="search"
+                        name="search" [(ngModel)]="searchInput" (input)="onSearchChange(searchInput)" />
+                    <i-tabler style="margin: 1.5rem 0 0 -2.2rem; color: #cacaca;" class="routeIcon" name="search"
+                        matListItemIcon></i-tabler>
+                </div>
+            </div>
+            <div class="col-sm-8 text-right">
+                <button type="button" mat-flat-button class="Extended-Fab" (click)="openAddSpecialiteDialog()">
+                    <span class="Extended-Fab__container">
+                        <i-tabler class="routeIcon Extended-Fab__icon" name="circle-plus" matListItemIcon></i-tabler>
+                        <span class="Extended-Fab__text">Add specialite</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col" style="margin-top: 2rem">
+            <mat-card class="cardWithShadow">
+                <div class="table-responsive m-t-16">
+                    <table mat-table [dataSource]="dataSource" class="w-100">
+                        <!-- nom Column -->
+                        <ng-container matColumnDef="nom">
+                            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                                Nom
+                            </th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="d-flex align-items-center justify-content-start">
+
+                                    <div class="tableImage__container">
+                                        <img [src]="uploadUrl+element.imageUrl" alt="users" width="40"
+                                            style="border-radius: 0.6rem;" class="tableImage" />
+                                    </div>
+                                    <div class="">
+                                        <h6 class="mat-subtitle-1 f-s-14 f-w-600">
+                                            {{ element.nom }}
+                                        </h6>
+                                        <!-- <span class="mat-body-1 f-s-12">
+                                            #1
+                                        </span> -->
+                                    </div>
+                                </div>
+                            </td>
+                        </ng-container>
+
+                        <!-- diplome Column -->
+                        <ng-container matColumnDef="diplome">
+                            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                                Diplome
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="mat-body-1">
+                                {{ element.diplome }}
+                            </td>
+                        </ng-container>
+
+                        <!-- universite Column -->
+                        <!-- <ng-container matColumnDef="universite">
+                            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                                Universite
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="mat-body-1">
+                                {{ element.universite.nomUniversite }}
+                            </td>
+                        </ng-container> -->
+
+                        <!-- planEtude Column -->
+                        <ng-container matColumnDef="planEtude">
+                            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                                Plan Etude
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="mat-body-1">
+
+                                <button appPdfViewerDialog [pdfFile]="uploadUrl + element.planEtudePdf"
+                                    [disabled]="!element.planEtudePdf" mat-icon-button="" color="primary"
+                                    class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                                    mat-button-is-fab="false">
+                                    <span
+                                        class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                                        [ngStyle]="{'color': element.planEtudePdf ? '#ff3c32': '#ffb9b6'}"
+                                        name="file-type-pdf" class="icon-20">
+                                    </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                                        class="mat-mdc-button-touch-target"></span><span
+                                        class="mat-mdc-button-ripple"></span>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <!-- action Column -->
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14">
+                                #Action
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="mat-body-1">
+
+                                <div style="display: flex;">
+                                    <a [routerLink]="['/dashboard/specialites/admin',element.id]" mat-icon-button=""
+                                        color="primary"
+                                        class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                                        mat-button-is-fab="false">
+                                        <span
+                                            class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                                            style="color: #8791ff" name="eye" class="icon-20" _nghost-ng-c2034356942="">
+                                        </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                                            class="mat-mdc-button-touch-target"></span><span
+                                            class="mat-mdc-button-ripple"></span>
+                                    </a>
+
+                                    <span class="m-x-1"></span>
+
+                                    <a type="button" (click)="openUpdateSpecialiteDialog(element)" mat-icon-button=""
+                                        color="primary"
+                                        class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                                        mat-button-is-fab="false">
+                                        <span
+                                            class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                                            style="color: #87a7ff" name="edit" class="icon-20"
+                                            _nghost-ng-c2034356942="">
+                                        </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                                            class="mat-mdc-button-touch-target"></span><span
+                                            class="mat-mdc-button-ripple"></span>
+                                    </a>
+
+                                    <span class="m-x-1"></span>
+
+                                    <a type="button" (click)="openDeleteSpecialiteDialog(element)" mat-icon-button=""
+                                        color="primary"
+                                        class="d-flex mdc-icon-button mat-mdc-icon-button mat-primary mat-mdc-button-base"
+                                        mat-button-is-fab="false">
+                                        <span
+                                            class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span><i-tabler
+                                            style="color: #ff8e8e" name="trash" class="icon-20"
+                                            _nghost-ng-c2034356942="">
+                                        </i-tabler><span class="mat-mdc-focus-indicator"></span><span
+                                            class="mat-mdc-button-touch-target"></span><span
+                                            class="mat-mdc-button-ripple"></span>
+                                    </a>
+                                    <!-- <div *ngIf="showDeleteDialog">
+                                        <app-delete-specialite-dialog2-dash [deletedSpec]="toDeleteSpec"
+                                            (onClose)="onClose($event)"
+                                            (onDelete)="onDelete($event)"></app-delete-specialite-dialog2-dash>
+                                    </div> -->
+
+                                </div>
+
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                </div>
+            </mat-card>
+        </div>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+    </mat-card-content>
+</mat-card>
