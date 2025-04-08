@@ -56,6 +56,8 @@
           <div class="table-responsive m-t-16">
             <table mat-table [dataSource]="dataSource" class="w-100">
               <!-- nom Column -->
+
+            <!--
               <ng-container matColumnDef="image">
                 <th
                   mat-header-cell
@@ -81,6 +83,31 @@
                   </div>
                 </td>
               </ng-container>
+            -->
+            
+              <ng-container matColumnDef="image">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  Image
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="d-flex align-items-center justify-content-start">
+                    <div class="tableImage__container">
+                      <img
+                        [src]="element.imageEvent"
+                        alt="users"
+                        width="40"
+                        style="border-radius: 0.6rem"
+                        class="tableImage"
+                      />
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+              
               <ng-container matColumnDef="nom">
                 <th
                   mat-header-cell

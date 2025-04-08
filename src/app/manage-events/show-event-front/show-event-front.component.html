@@ -70,6 +70,21 @@
               <p>{{ currentEvent.lieuEvent }}</p>
             </div>
           </div>
+          <div class="event__status mt-2"
+              [ngStyle]="{ 'color': getTextColor(currentEvent.dateDebEvent, currentEvent.dateFinEvent) }">
+            <ng-container [ngSwitch]="getEventStatus(currentEvent.dateDebEvent, currentEvent.dateFinEvent)">
+              <p *ngSwitchCase="'not-started'" [ngStyle]="{ 'color': getTextColor(currentEvent.dateDebEvent, currentEvent.dateFinEvent) }">
+                <b>Status:</b> Upcoming — Starts in {{ getCountdown(currentEvent.dateDebEvent) }}
+              </p>
+              <p *ngSwitchCase="'ongoing'" [ngStyle]="{ 'color': getTextColor(currentEvent.dateDebEvent, currentEvent.dateFinEvent) }">
+                <b>Status:</b> Ongoing — Ends in {{ getCountdown(currentEvent.dateFinEvent) }}
+              </p>
+              <p *ngSwitchCase="'ended'" [ngStyle]="{ 'color': getTextColor(currentEvent.dateDebEvent, currentEvent.dateFinEvent) }">
+                <b>Status:</b> Event Ended
+              </p>
+              
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
@@ -84,10 +99,7 @@
           <div class="events__wrapper">
             <div class="events__thumb mb-35 w-img">
               <img
-                [src]="
-                  'http://localhost:8087/upload-directory/' +
-                  currentEvent.imageEvent
-                "
+                [src]="currentEvent.imageEvent"
                 alt=""
               />
             </div>

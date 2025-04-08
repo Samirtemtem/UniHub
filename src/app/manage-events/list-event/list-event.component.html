@@ -8,16 +8,7 @@
             <div class="course__tab-btn">
               <ul class="nav nav-tabs" id="courseTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link active"
-                    id="grid-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#grid"
-                    type="button"
-                    role="tab"
-                    aria-controls="grid"
-                    aria-selected="true"
-                  >
+                  <button class="nav-link active" id="grid-tab" data-bs-toggle="tab" data-bs-target="#grid" type="button" role="tab" aria-controls="grid" aria-selected="true">
                     <svg class="grid" viewBox="0 0 24 24">
                       <rect x="3" y="3" class="st0" width="7" height="7" />
                       <rect x="14" y="3" class="st0" width="7" height="7" />
@@ -27,32 +18,14 @@
                   </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link list"
-                    id="list-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#list"
-                    type="button"
-                    role="tab"
-                    aria-controls="list"
-                    aria-selected="false"
-                  >
+                  <button class="nav-link list" id="list-tab" data-bs-toggle="tab" data-bs-target="#list" type="button" role="tab" aria-controls="list" aria-selected="false">
                     <svg class="list" viewBox="0 0 512 512">
                       <g id="Layer_2_1_">
-                        <path
-                          class="st0"
-                          d="M448,69H192c-17.7,0-32,13.9-32,31s14.3,31,32,31h256c17.7,0,32-13.9,32-31S465.7,69,448,69z"
-                        />
+                        <path class="st0" d="M448,69H192c-17.7,0-32,13.9-32,31s14.3,31,32,31h256c17.7,0,32-13.9,32-31S465.7,69,448,69z" />
                         <circle class="st0" cx="64" cy="100" r="31" />
-                        <path
-                          class="st0"
-                          d="M448,225H192c-17.7,0-32,13.9-32,31s14.3,31,32,31h256c17.7,0,32-13.9,32-31S465.7,225,448,225z"
-                        />
+                        <path class="st0" d="M448,225H192c-17.7,0-32,13.9-32,31s14.3,31,32,31h256c17.7,0,32-13.9,32-31S465.7,225,448,225z" />
                         <circle class="st0" cx="64" cy="256" r="31" />
-                        <path
-                          class="st0"
-                          d="M448,381H192c-17.7,0-32,13.9-32,31s14.3,31,32,31h256c17.7,0,32-13.9,32-31S465.7,381,448,381z"
-                        />
+                        <path class="st0" d="M448,381H192c-17.7,0-32,13.9-32,31s14.3,31,32,31h256c17.7,0,32-13.9,32-31S465.7,381,448,381z" />
                         <circle class="st0" cx="64" cy="412" r="31" />
                       </g>
                     </svg>
@@ -65,65 +38,28 @@
             </div>
           </div>
         </div>
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
-          <div class="course__sort d-flex justify-content-sm-end">
-            <div class="course__sort-inner">
-              <select>
-                <option>Default</option>
-                <!-- <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
-                <option>Option 6</option> -->
-              </select>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-xxl-12">
         <div class="course__tab-conent">
           <div class="tab-content" id="courseTabContent">
-            <div
-              class="tab-pane fade show active"
-              id="grid"
-              role="tabpanel"
-              aria-labelledby="grid-tab"
-            >
+
+            <!-- Grid View -->
+            <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
               <div class="row">
-                <!-- one card -->
-                <div
-                  *ngFor="let event of eventsList"
-                  class="col-xxl-4 col-xl-4 col-lg-4 col-md-6"
-                >
+                <div *ngFor="let event of eventsList" class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                   <div class="course__item white-bg mb-30 fix">
                     <div class="course__thumb w-img p-relative fix">
                       <a [routerLink]="['/evenement', event.idEvent]">
-                        <img
-                          [src]="
-                            'http://localhost:8087/upload-directory/' +
-                            event.imageEvent
-                          "
-                          alt=""
-                        />
+                        <img [src]="event.imageEvent" alt="Event Image" style="max-width: 100%; height: auto;" />
                       </a>
-                      <!-- <div class="course__tag">
-                        <a href="#" class="sky-blue">Upcoming</a>
-                      </div> -->
                     </div>
                     <div class="course__content">
-                      <div
-                        class="course__meta d-flex align-items-center justify-content-between"
-                      >
+                      <div class="course__meta d-flex align-items-center justify-content-between">
                         <div class="course__lesson">
-                          <span
-                          ><i class="far fa-book-alt"></i
-                          >{{
-                            event.dateDebEvent | date : "yyyy-MM-dd"
-                            }}</span
-                          >
+                          <span><i class="far fa-book-alt"></i> {{ event.dateDebEvent | date: 'yyyy-MM-dd' }}</span>
                         </div>
                         <div class="course__rating">
                           <span>{{ event.lieuEvent }}</span>
@@ -136,29 +72,32 @@
                         <h6>
                           <a href="instructor-details.html">
                             {{
-                            event.descriptionEvent.length > 60
-                              ? event.descriptionEvent.substring(0, 60) +
-                              "..."
-                              : event.descriptionEvent
-                            }}</a
-                          >
+                              event.descriptionEvent.length > 60
+                                ? event.descriptionEvent.substring(0, 60) + '...'
+                                : event.descriptionEvent
+                            }}
+                          </a>
                         </h6>
                       </div>
+                      <div class="event__status mt-2"
+                          [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                        <ng-container [ngSwitch]="getEventStatus(event.dateDebEvent, event.dateFinEvent)">
+                          <p *ngSwitchCase="'not-started'" [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                            <b>Status:</b> Upcoming — Starts in {{ getCountdown(event.dateDebEvent) }}
+                          </p>
+                          <p *ngSwitchCase="'ongoing'" [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                            <b>Status:</b> Ongoing — Ends in {{ getCountdown(event.dateFinEvent) }}
+                          </p>
+                          <p *ngSwitchCase="'ended'" [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                            <b>Status:</b> Event Ended
+                          </p>
+                        </ng-container>
+                      </div>
                     </div>
-                    <div
-                      class="course__more d-flex justify-content-between align-items-center"
-                    >
-                      <div
-                        class="course__status d-flex align-items-center"
-                      ></div>
+                    <div class="course__more d-flex justify-content-between align-items-center">
                       <div class="course__btn">
-                        <a
-                          [routerLink]="['/evenement', event.idEvent]"
-                          class="link-btn"
-                        >
-                          Show Details
-                          <i class="far fa-arrow-right"></i>
-                          <i class="far fa-arrow-right"></i>
+                        <a [routerLink]="['/evenement', event.idEvent]" class="link-btn">
+                          Show Details <i class="far fa-arrow-right"></i> <i class="far fa-arrow-right"></i>
                         </a>
                       </div>
                     </div>
@@ -166,34 +105,17 @@
                 </div>
               </div>
             </div>
-            <!-- affiche option 2 -->
-            <div
-              class="tab-pane fade"
-              id="list"
-              role="tabpanel"
-              aria-labelledby="list-tab"
-            >
+
+            <!-- List View -->
+            <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab">
               <div class="row">
                 <div *ngFor="let event of eventsList" class="col-xxl-12">
                   <div class="course__item white-bg mb-30 fix">
                     <div class="row gx-0">
                       <div class="col-xxl-4 col-xl-4 col-lg-4">
-                        <div
-                          class="course__thumb course__thumb-list w-img p-relative fix"
-                        >
-                          <a
-                            [routerLink]="[
-                              '/evenement',
-                              event.idEvent
-                            ]"
-                          >
-                            <img
-                              [src]="
-                                'http://localhost:8087/upload-directory/' +
-                                event.imageEvent
-                              "
-                              alt=""
-                            />
+                        <div class="course__thumb course__thumb-list w-img p-relative fix">
+                          <a [routerLink]="['/evenement', event.idEvent]">
+                            <img [src]="'https://res.cloudinary.com/dpyskh5fy/image/upload/' + event.imageEvent" alt="" />
                           </a>
                         </div>
                       </div>
@@ -202,50 +124,40 @@
                           <div class="course__content course__content-3">
                             <div class="course__meta d-flex align-items-center">
                               <div class="course__lesson mr-20">
-                                <span
-                                ><i class="far fa-book-alt"></i
-                                ><b> Start Date : </b>
-                                  {{
-                                  event.dateDebEvent | date : "yyyy-MM-dd"
-                                  }}</span
-                                >
+                                <span><i class="far fa-book-alt"></i> <b>Start Date:</b> {{ event.dateDebEvent | date: 'yyyy-MM-dd' }}</span>
                               </div>
                               <div class="course__rating">
-                                <span style="width: 2rem"></span>
-                                <span style="margin-left: 10rem"
-                                ><b> End Date : </b>
-                                  {{
-                                  event.dateFinEvent | date : "yyyy-MM-dd"
-                                  }}</span
-                                >
+                                <span style="margin-left: 2rem;"><b>End Date:</b> {{ event.dateFinEvent | date: 'yyyy-MM-dd' }}</span>
                               </div>
                             </div>
                             <h3 class="course__title course__title-3">
                               <a href="#">{{ event.nomEvent }}</a>
                             </h3>
                             <div class="course__summary">
-                              <p>
-                                {{ event.descriptionEvent }}
-                              </p>
+                              <p>{{ event.descriptionEvent }}</p>
+                            </div>
+                            <div class="event__status mt-2"
+                                [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                              <ng-container [ngSwitch]="getEventStatus(event.dateDebEvent, event.dateFinEvent)">
+                                <p *ngSwitchCase="'not-started'" [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                                  <b>Status:</b> Upcoming — Starts in {{ getCountdown(event.dateDebEvent) }}
+                                </p>
+                                <p *ngSwitchCase="'ongoing'" [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                                  <b>Status:</b> Ongoing — Ends in {{ getCountdown(event.dateFinEvent) }}
+                                </p>
+                                <p *ngSwitchCase="'ended'" [ngStyle]="{ 'color': getTextColor(event.dateDebEvent, event.dateFinEvent) }">
+                                  <b>Status:</b> Event Ended
+                                </p>
+                              </ng-container>
                             </div>
                           </div>
-                          <div
-                            class="course__more course__more-2 d-flex justify-content-between align-items-center"
-                          >
+                          <div class="course__more course__more-2 d-flex justify-content-between align-items-center mt-3">
                             <div class="course__status">
                               <span>{{ event.lieuEvent }}</span>
                             </div>
                             <div class="course__btn">
-                              <a
-                                [routerLink]="[
-                                  '/evenement',
-                                  event.idEvent
-                                ]"
-                                class="link-btn"
-                              >
-                                Show Details
-                                <i class="far fa-arrow-right"></i>
-                                <i class="far fa-arrow-right"></i>
+                              <a [routerLink]="['/evenement', event.idEvent]" class="link-btn">
+                                Show Details <i class="far fa-arrow-right"></i> <i class="far fa-arrow-right"></i>
                               </a>
                             </div>
                           </div>
@@ -256,46 +168,25 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xxl-12">
-        <div class="basic-pagination wow fadeInUp mt-30" data-wow-delay=".2s">
-          <ul class="d-flex align-items-center">
-            <li class="prev">
-              <a href="course-grid.html" class="link-btn link-prev">
-                Prev
-                <i class="arrow_left"></i>
-                <i class="arrow_left"></i>
-              </a>
-            </li>
-            <li>
-              <a href="course-grid.html">
-                <span>1</span>
-              </a>
-            </li>
-            <li class="active">
-              <a href="course-grid.html">
-                <span>2</span>
-              </a>
-            </li>
-            <li>
-              <a href="course-grid.html">
-                <span>3</span>
-              </a>
-            </li>
-            <li class="next">
-              <a href="course-grid.html" class="link-btn">
-                Next
-                <i class="arrow_right"></i>
-                <i class="arrow_right"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+
+    <!-- Pagination Section -->
+    <div class="basic-pagination wow fadeInUp mt-30" data-wow-delay=".2s">
+      <ul class="d-flex align-items-center">
+        <li class="prev" [ngClass]="{ 'disabled': currentPage === 1 }">
+          <a href="#" class="link-btn link-prev" (click)="goToPage(currentPage - 1)">Prev<i class="arrow_left"></i></a>
+        </li>
+        <li *ngFor="let page of [].constructor(getTotalPages()); let i = index" [ngClass]="{ 'active': currentPage === i + 1 }">
+          <a href="#" (click)="goToPage(i + 1)"><span>{{ i + 1 }}</span></a>
+        </li>
+        <li class="next" [ngClass]="{ 'disabled': currentPage === getTotalPages() }">
+          <a href="#" class="link-btn" (click)="goToPage(currentPage + 1)">Next<i class="arrow_right"></i></a>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -311,15 +202,11 @@
       <div class="row align-items-center">
         <div class="col-xxl-7 col-xl-7 col-lg-8 col-md-8">
           <div class="cta__content">
-            <h3 class="cta__title">
-              You can be your own Guiding star with our help
-            </h3>
+            <h3 class="cta__title">You can be your own Guiding star with our help</h3>
           </div>
         </div>
         <div class="col-xxl-5 col-xl-5 col-lg-4 col-md-4">
-          <div
-            class="cta__more d-md-flex justify-content-end p-relative z-index-1"
-          >
+          <div class="cta__more d-md-flex justify-content-end p-relative z-index-1">
             <a href="#" class="e-btn e-btn-white">Get Started</a>
           </div>
         </div>
