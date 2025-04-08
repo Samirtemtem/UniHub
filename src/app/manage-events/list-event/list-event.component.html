@@ -114,8 +114,13 @@
                     <div class="row gx-0">
                       <div class="col-xxl-4 col-xl-4 col-lg-4">
                         <div class="course__thumb course__thumb-list w-img p-relative fix">
+                        <!--
                           <a [routerLink]="['/evenement', event.idEvent]">
                             <img [src]="'https://res.cloudinary.com/dpyskh5fy/image/upload/' + event.imageEvent" alt="" />
+                          </a>
+                        -->
+                          <a [routerLink]="['/evenement', event.idEvent]">
+                            <img [src]="event.imageEvent" alt="Event Image" style="max-width: 100%; height: auto;" />
                           </a>
                         </div>
                       </div>
@@ -175,18 +180,42 @@
     </div>
 
     <!-- Pagination Section -->
-    <div class="basic-pagination wow fadeInUp mt-30" data-wow-delay=".2s">
-      <ul class="d-flex align-items-center">
-        <li class="prev" [ngClass]="{ 'disabled': currentPage === 1 }">
-          <a href="#" class="link-btn link-prev" (click)="goToPage(currentPage - 1)">Prev<i class="arrow_left"></i></a>
-        </li>
-        <li *ngFor="let page of [].constructor(getTotalPages()); let i = index" [ngClass]="{ 'active': currentPage === i + 1 }">
-          <a href="#" (click)="goToPage(i + 1)"><span>{{ i + 1 }}</span></a>
-        </li>
-        <li class="next" [ngClass]="{ 'disabled': currentPage === getTotalPages() }">
-          <a href="#" class="link-btn" (click)="goToPage(currentPage + 1)">Next<i class="arrow_right"></i></a>
-        </li>
-      </ul>
+    <div class="row">
+      <div class="col-xxl-12">
+        <div class="basic-pagination wow fadeInUp mt-30" data-wow-delay=".2s">
+          <ul class="d-flex align-items-center">
+            <li class="prev">
+              <a href="course-grid.html" class="link-btn link-prev">
+                Prev
+                <i class="arrow_left"></i>
+                <i class="arrow_left"></i>
+              </a>
+            </li>
+            <li>
+              <a href="course-grid.html">
+                <span>1</span>
+              </a>
+            </li>
+            <li class="active">
+              <a href="course-grid.html">
+                <span>2</span>
+              </a>
+            </li>
+            <li>
+              <a href="course-grid.html">
+                <span>3</span>
+              </a>
+            </li>
+            <li class="next">
+              <a href="course-grid.html" class="link-btn">
+                Next
+                <i class="arrow_right"></i>
+                <i class="arrow_right"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
